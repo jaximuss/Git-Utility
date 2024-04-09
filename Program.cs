@@ -27,8 +27,8 @@ public class Program
             Console.WriteLine("Please enter the command you want to execute:");
             var commandInput = Console.ReadLine().Trim().ToLower();
 
-            var initOpts = new IntializeGitOptions(); // Initialize appropriately
-            var cleanBranchesOpts = new CleanBranchesOption(); // Initialize appropriately
+            var initOpts = new IntializeGitOptions(); 
+            var cleanBranchesOpts = new CleanBranchesOption();
 
             switch (commandInput)
             {
@@ -74,17 +74,6 @@ public class Program
                     break;
             }
 
-            // Console.WriteLine("would you like to run clean branches and return : Y/N");
-            // var answer = Console.ReadLine().Trim().ToUpper();
-
-            //     //PARSE ALL COMMAND LINE INSTRUCTIONS
-            //     Parser.Default.ParseArguments<CleanBranchesOption, BatchCommitOption, PullAndPushOptions>(args)
-            //.MapResult(
-            //        (CleanBranchesOption opts) => RunCleanBranchesAndReturnExitCode(opts, repoPath),
-            //        //(BatchCommitOption opts) => RunBatchCommitAndReturnExitCode(opts),
-            //        //(PullAndPushOptions opts) => PullAndPushOptionsAndReturnExitCode(opts),
-            //        errs => 1); // Handle errors
-
         }
 
     }
@@ -96,13 +85,13 @@ public class Program
             if (opts.Init)
             {
                 var output = ExecuteGitCommand("init", repoPath);
-                Console.WriteLine(output); // Outputs the result of the Git command
+                Console.WriteLine(output);
                 YouMustAnswer();
             }
             if (opts.add)
             {
                 var output = ExecuteGitCommand("add .", repoPath);
-                Console.WriteLine(output); // Outputs the result of the Git command
+                Console.WriteLine(output);
                 YouMustAnswer();
             }
             if (opts.remote)
@@ -110,19 +99,19 @@ public class Program
                 Console.WriteLine("please paste the url below");
                 var url = Console.ReadLine().Trim();
                 var output = ExecuteGitCommand($"remote add origin {url}", repoPath);
-                Console.WriteLine(output); // Outputs the result of the Git command
+                Console.WriteLine(output);
                 YouMustAnswer();
             }
             if (opts.push)
             {
                 var output = ExecuteGitCommand("push origin master", repoPath);
-                Console.WriteLine(output); // Outputs the result of the Git command
+                Console.WriteLine(output);
                 YouMustAnswer();
             }
             if (opts.pull)
             {
                 var output = ExecuteGitCommand("pull", repoPath);
-                Console.WriteLine(output); // Outputs the result of the Git command
+                Console.WriteLine(output); 
                 YouMustAnswer();
             }
             if (opts.commit)
@@ -130,13 +119,13 @@ public class Program
                 Console.WriteLine("whats your commit message");
                 var message = Console.ReadLine();
                 var output = ExecuteGitCommand($"commit -m {message}", repoPath);
-                Console.WriteLine(output); // Outputs the result of the Git command
+                Console.WriteLine(output); 
                 YouMustAnswer();
             }
             if (opts.status)
             {
                 var output = ExecuteGitCommand("status", repoPath);
-                Console.WriteLine(output); // Outputs the result of the Git command
+                Console.WriteLine(output);
                 YouMustAnswer();
             }
         }
@@ -161,23 +150,22 @@ public class Program
             Console.Write(".");
             Thread.Sleep(1000);
             var output = ExecuteGitCommand("branch --merged", repoPath);
-            Console.WriteLine(output); // Outputs the result of the Git command
-                                       // Additional logic to process the output and delete branches as needed
+            Console.WriteLine(output); 
         }
         catch (Exception ex)
         {
             Console.WriteLine($"An error occurred: {ex.Message}");
-            return 1; // Indicates failure
+            return 1;
         }
 
-        return 0; // Indicates success
+        return 0;
     }
 
     private static int RunBatchCommitAndReturnExitCode(BatchCommitOption opts)
     {
-        // Placeholder for logic
+      
         Console.WriteLine("Running Batches...");
-        return 0; // Success
+        return 0; 
     }
 
     private static int RunCleanBranchesAndReturnExitCode(CleanBranchesOption opts, string repoPath)
@@ -192,16 +180,15 @@ public class Program
             Console.Write(".");
             Thread.Sleep(1000);
             var output = ExecuteGitCommand("branch --merged", repoPath);
-            Console.WriteLine(output); // Outputs the result of the Git command
-                                       // Additional logic to process the output and delete branches as needed
+            Console.WriteLine(output); 
         }
         catch (Exception ex)
         {
             Console.WriteLine($"An error occurred: {ex.Message}");
-            return 1; // Indicates failure
+            return 1; 
         }
 
-        return 0; // Indicates success
+        return 0;
     }
 
     private static IEnumerable<string> GetMergedBranches(string repoPath)
@@ -243,13 +230,10 @@ public class Program
             process.StartInfo = startInfo;
             process.Start();
 
-            // Read output to string
+       
             string result = process.StandardOutput.ReadToEnd();
 
-            // Wait for the process to finish
             process.WaitForExit();
-
-            // You might also want to check the exit code or standard error to handle errors
             if (process.ExitCode != 0)
             {
                 string error = process.StandardError.ReadToEnd();
@@ -279,7 +263,7 @@ public class Program
             int percent = filledBlocks * 100 / totalBlocks;
             Console.Write(new string('=', filledBlocks) + new string(' ', totalBlocks - filledBlocks) + $"] {percent}%\r");
             filledBlocks++;
-            Thread.Sleep(100); // Sleep for a short time to simulate loading
+            Thread.Sleep(100); 
         }
     }
 
