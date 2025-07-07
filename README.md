@@ -16,7 +16,7 @@ The Git Utility Tool is a command-line application designed to simplify and auto
 2. Clone this repository to your local machine using Git:
 git clone https://github.com/jaximuss/Git-Utility.git
 3. Navigate into the cloned directory:
-`cd git-utility-tool`
+`cd git-utility`
 4. Compile the project (ensure you have [.NET SDK](https://dotnet.microsoft.com/download) installed):
 dotnet build
 
